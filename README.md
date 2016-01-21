@@ -1,7 +1,7 @@
 # UnderLineLinearLayout
 // 这是一个简单的时间轴实现(LinearLayout)</br>
 ##效果图:</br>
-[!image](https://github.com/razerdp/UnderLineLinearLayout/blob/master/img/underlinelayout.gif)
+![image](https://github.com/razerdp/UnderLineLinearLayout/blob/master/img/underlinelayout.gif)
 </br>
 ##使用方法：</br>
  因为继承的LinearLayout，所以请直接addView吧-V-</br>
