@@ -1,4 +1,4 @@
-package razerdp.widget;
+package razerdp.demo;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

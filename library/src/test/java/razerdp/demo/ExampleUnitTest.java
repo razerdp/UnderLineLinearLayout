@@ -1,4 +1,4 @@
-package razerdp.widget;
+package razerdp.demo;
 
 import org.junit.Test;
 

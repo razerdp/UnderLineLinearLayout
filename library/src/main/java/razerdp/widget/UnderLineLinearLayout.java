@@ -8,7 +8,6 @@ import android.graphics.Paint;
 import android.graphics.drawable.BitmapDrawable;
 import android.util.AttributeSet;
 import android.widget.LinearLayout;
-import razerdp.underlinelinearlayout.R;
 
 /**
  * Created by 大灯泡 on 2016/1/21.
@@ -67,7 +66,7 @@ public class UnderLineLinearLayout extends LinearLayout {
         if (temp != null) mIcon = temp.getBitmap();
 
         curOrientation = getOrientation();
-
+        attr.recycle();
         initView(context);
     }
 
