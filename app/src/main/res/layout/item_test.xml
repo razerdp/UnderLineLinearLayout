@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="20dp"
+    android:paddingLeft="65dp"
+    android:paddingRight="15dp"
+    android:paddingBottom="20dp">
+
+    <TextView
+        android:id="@+id/tx_action"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="#1a1a1a"
+        android:text="测试一"/>
+
+    <TextView
+        android:id="@+id/tx_action_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:textColor="#8e8e8e"
+        android:layout_below="@id/tx_action"
+        android:layout_marginTop="10dp"
+        android:text="2015-07-12 20:34:34"/>
+
+    <TextView
+        android:id="@+id/tx_action_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="#3dd1a5"
+        android:layout_alignParentRight="true"
+        android:text="完成"/>
+
+</RelativeLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="UnderLineLinearLayout">
+        <attr name="line_margin_side" format="dimension"/>
+        <attr name="line_dynamic_dimen" format="dimension"/>
+        <attr name="line_stroke_width" format="dimension"/>
+        <attr name="line_color" format="color"/>
+        <attr name="point_size" format="dimension"/>
+        <attr name="point_color" format="color"/>
+        <attr name="icon_src" format="reference"/>
+    </declare-styleable>
+
+</resources>
