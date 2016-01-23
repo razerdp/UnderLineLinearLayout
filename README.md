@@ -25,4 +25,5 @@
         <attr name="icon_src" format="reference"/>
     </declare-styleable>
 ```    
- 
+##解析博文：</br>
+http://blog.csdn.net/mkfrank/article/details/50557221
