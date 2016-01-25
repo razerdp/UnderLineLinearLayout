@@ -26,4 +26,6 @@
     </declare-styleable>
 ```    
 ##解析博文：</br>
-http://blog.csdn.net/mkfrank/article/details/50557221
+http://blog.csdn.net/mkfrank/article/details/50557221 </br>
+or</br>
+http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/0121/3902.html
