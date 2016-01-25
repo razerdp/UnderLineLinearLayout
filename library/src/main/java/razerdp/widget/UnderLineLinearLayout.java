@@ -203,4 +203,98 @@ public class UnderLineLinearLayout extends LinearLayout {
             }
         }
     }
+
+    //=============================================================Getter/Setter
+
+    @Override
+    public void setOrientation(int orientation) {
+        super.setOrientation(orientation);
+        this.curOrientation=orientation;
+    }
+
+    public int getLineStrokeWidth() {
+        return lineStrokeWidth;
+    }
+
+    public void setLineStrokeWidth(int lineStrokeWidth) {
+        this.lineStrokeWidth = lineStrokeWidth;
+    }
+
+    public boolean isDrawLine() {
+        return drawLine;
+    }
+
+    public void setDrawLine(boolean drawLine) {
+        this.drawLine = drawLine;
+    }
+
+    public Paint getLinePaint() {
+        return linePaint;
+    }
+
+    public void setLinePaint(Paint linePaint) {
+        this.linePaint = linePaint;
+    }
+
+    public int getPointSize() {
+        return pointSize;
+    }
+
+    public void setPointSize(int pointSize) {
+        this.pointSize = pointSize;
+    }
+
+    public int getPointColor() {
+        return pointColor;
+    }
+
+    public void setPointColor(int pointColor) {
+        this.pointColor = pointColor;
+    }
+
+    public Paint getPointPaint() {
+        return pointPaint;
+    }
+
+    public void setPointPaint(Paint pointPaint) {
+        this.pointPaint = pointPaint;
+    }
+
+    public int getLineColor() {
+        return lineColor;
+    }
+
+    public void setLineColor(int lineColor) {
+        this.lineColor = lineColor;
+    }
+
+    public int getLineMarginSide() {
+        return lineMarginSide;
+    }
+
+    public void setLineMarginSide(int lineMarginSide) {
+        this.lineMarginSide = lineMarginSide;
+    }
+
+    public int getLineDynamicDimen() {
+        return lineDynamicDimen;
+    }
+
+    public void setLineDynamicDimen(int lineDynamicDimen) {
+        this.lineDynamicDimen = lineDynamicDimen;
+    }
+
+    public Bitmap getIcon() {
+        return mIcon;
+    }
+
+    public void setIcon(Bitmap icon) {
+        mIcon = icon;
+    }
+
+    public void setIcon(int resId){
+        if (resId==0)return;
+        BitmapDrawable temp = (BitmapDrawable) mContext.getResources().getDrawable(resId);
+        if (temp != null) mIcon = temp.getBitmap();
+    }
 }
