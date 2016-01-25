@@ -24,26 +24,26 @@
             android:text="sub"
             />
         <Button
-            android:id="@+id/horizontal"
+            android:id="@+id/vertical"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="horizontal"
+            android:text="vertical"
             />
     </LinearLayout>
-    <ScrollView
-        android:layout_width="match_parent"
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scrollbars="none">
         <razerdp.widget.UnderLineLinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/underline_layout"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:line_margin_side="25dp"
-            app:line_dynamic_dimen="8dp"
-            android:orientation="vertical"
+            app:line_margin_side="10dp"
+            app:line_dynamic_dimen="2dp"
+            android:orientation="horizontal"
             android:background="@android:color/white">
 
         </razerdp.widget.UnderLineLinearLayout>
-    </ScrollView>
+    </HorizontalScrollView>
 </LinearLayout>

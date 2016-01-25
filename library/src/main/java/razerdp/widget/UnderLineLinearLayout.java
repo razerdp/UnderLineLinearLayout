@@ -108,6 +108,9 @@ public class UnderLineLinearLayout extends LinearLayout {
                         drawBetweenLineVertical(canvas);
                         break;
                     case HORIZONTAL:
+                        drawFirstChildViewHorizontal(canvas);
+                        drawLastChildViewHorizontal(canvas);
+                        drawBetweenLineHorizontal(canvas);
                         break;
                     default:
                         break;
@@ -119,6 +122,7 @@ public class UnderLineLinearLayout extends LinearLayout {
                         drawFirstChildViewVertical(canvas);
                         break;
                     case HORIZONTAL:
+                        drawFirstChildViewHorizontal(canvas);
                         break;
                     default:
                         break;
@@ -127,6 +131,7 @@ public class UnderLineLinearLayout extends LinearLayout {
         }
     }
 
+    //=============================================================Vertical Draw
     private void drawFirstChildViewVertical(Canvas canvas) {
         if (getChildAt(0) != null) {
             int top = getChildAt(0).getTop();
@@ -159,6 +164,42 @@ public class UnderLineLinearLayout extends LinearLayout {
                 //记录值
                 int Y = top + getChildAt(i).getPaddingTop() + lineDynamicDimen;
                 canvas.drawCircle(lineMarginSide, Y, pointSize, pointPaint);
+            }
+        }
+    }
+    //=============================================================Horizontal Draw
+    private void drawFirstChildViewHorizontal(Canvas canvas) {
+        if (getChildAt(0) != null) {
+            int left = getChildAt(0).getLeft();
+            //记录值
+            firstX =left + getChildAt(0).getPaddingLeft() + lineDynamicDimen;
+            firstY = lineMarginSide;
+            //画一个圆
+            canvas.drawCircle(firstX, firstY, pointSize, pointPaint);
+        }
+    }
+
+    private void drawLastChildViewHorizontal(Canvas canvas) {
+        if (getChildAt(getChildCount() - 1) != null) {
+            int left = getChildAt(getChildCount() - 1).getLeft();
+            //记录值
+            lastX = left + getChildAt(getChildCount() - 1).getPaddingLeft() + lineDynamicDimen;
+            lastY = lineMarginSide - (mIcon.getWidth() >> 1);
+            //画一个图
+            canvas.drawBitmap(mIcon, lastX, lastY, null);
+        }
+    }
+
+    private void drawBetweenLineHorizontal(Canvas canvas) {
+        for (int i = 0; i < getChildCount() - 1; i++) {
+            //画剩下的
+            canvas.drawLine(firstX, lineMarginSide, lastX, lineMarginSide, linePaint);
+            //画了线，就画圆
+            if (getChildAt(i) != null && i != 0) {
+                int left = getChildAt(i).getLeft();
+                //记录值
+                int x = left + getChildAt(i).getPaddingLeft() + lineDynamicDimen;
+                canvas.drawCircle(x, lineMarginSide, pointSize, pointPaint);
             }
         }
     }
