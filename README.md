@@ -34,4 +34,6 @@ or</br>
 http://www.jcodecraeer.com/a/anzhuokaifa/androidkaifa/2016/0121/3902.html
 ###最后打个小广告：这是我另一个正在维护的项目，一个方便使用popupWindow的顶级抽象类，期望可以方便的实现popupWindow的各种效果，欢迎fork和star以及提出意见或建议
 https://github.com/razerdp/BasePopup
+##LICENSE
+许可？？？。。。。。。。纯属交流，请随便用吧- -
  
