@@ -8,7 +8,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:weightSum="3">
+        android:weightSum="4">
         <Button
             android:id="@+id/add"
             android:layout_width="0dp"
@@ -30,7 +30,40 @@
             android:layout_weight="1"
             android:text="vertical"
             />
+        <Button
+            android:id="@+id/line_gravity"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="top"
+            />
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/add_marginside"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="+"/>
+        <Button
+            android:id="@+id/sub_marginside"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="-"/>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/cur_marginside"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="current line marginside=10dp"
+        />
     <HorizontalScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

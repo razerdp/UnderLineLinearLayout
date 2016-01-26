@@ -14,6 +14,12 @@ import android.widget.LinearLayout;
  * 简易带有时间轴的linearlayout
  */
 public class UnderLineLinearLayout extends LinearLayout {
+    //=============================================================line gravity常量定义
+    public static final int GRAVITY_LEFT = 2;
+    public static final int GRAVITY_RIGHT = 4;
+    public static final int GRAVITY_MIDDLE =0;
+    public static final int GRAVITY_TOP = 1;
+    public static final int GRAVITY_BOTTOM = 3;
     //=============================================================元素定义
     private Bitmap mIcon;
     //line location
@@ -38,10 +44,22 @@ public class UnderLineLinearLayout extends LinearLayout {
     private int lastY;
     //默认垂直
     private int curOrientation = VERTICAL;
+
+    //line gravity(默认垂直的左边)
+    private int lineGravity = GRAVITY_LEFT;
+
     private Context mContext;
 
     //开关
     private boolean drawLine = true;
+
+    private int rootLeft;
+    private int rootMiddle;
+    private int rootRight;
+    private int rootTop;
+    private int rootBottom;
+    //参照点
+    private int sideRelative;
 
     public UnderLineLinearLayout(Context context) {
         this(context, null);
@@ -60,6 +78,7 @@ public class UnderLineLinearLayout extends LinearLayout {
         lineColor = attr.getColor(R.styleable.UnderLineLinearLayout_line_color, 0xff3dd1a5);
         pointSize = attr.getDimensionPixelSize(R.styleable.UnderLineLinearLayout_point_size, 8);
         pointColor = attr.getDimensionPixelOffset(R.styleable.UnderLineLinearLayout_point_color, 0xff3dd1a5);
+        lineGravity = attr.getInt(R.styleable.UnderLineLinearLayout_line_gravity, GRAVITY_LEFT);
 
         int iconRes = attr.getResourceId(R.styleable.UnderLineLinearLayout_icon_src, R.drawable.ic_ok);
         BitmapDrawable temp = (BitmapDrawable) context.getResources().getDrawable(iconRes);
@@ -90,8 +109,41 @@ public class UnderLineLinearLayout extends LinearLayout {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        calculateSideRelative();
         if (drawLine) {
             drawTimeLine(canvas);
+        }
+    }
+
+    private void calculateSideRelative() {
+        rootLeft = getLeft();
+        rootTop = getTop();
+        rootRight = getRight();
+        rootBottom = getBottom();
+        if (curOrientation == VERTICAL) rootMiddle = (rootLeft + rootRight) >> 1;
+        if (curOrientation == HORIZONTAL) rootMiddle = (rootTop + rootBottom) >> 1;
+
+        boolean isCorrect=(lineGravity==GRAVITY_MIDDLE||(lineGravity+curOrientation)%2!=0);
+        if (isCorrect){
+            switch (lineGravity){
+                case GRAVITY_TOP:
+                    sideRelative=rootTop;
+                    break;
+                case GRAVITY_BOTTOM:
+                    sideRelative=rootBottom;
+                    break;
+                case GRAVITY_LEFT:
+                    sideRelative=rootLeft;
+                    break;
+                case GRAVITY_RIGHT:
+                    sideRelative=rootRight;
+                    break;
+                case GRAVITY_MIDDLE:
+                    sideRelative=rootMiddle;
+                    break;
+            }
+        }else {
+            sideRelative=0;
         }
     }
 
@@ -136,7 +188,7 @@ public class UnderLineLinearLayout extends LinearLayout {
         if (getChildAt(0) != null) {
             int top = getChildAt(0).getTop();
             //记录值
-            firstX = lineMarginSide;
+            firstX = sideRelative>=rootMiddle?(sideRelative-lineMarginSide):(sideRelative+lineMarginSide);
             firstY = top + getChildAt(0).getPaddingTop() + lineDynamicDimen;
             //画一个圆
             canvas.drawCircle(firstX, firstY, pointSize, pointPaint);
@@ -147,7 +199,8 @@ public class UnderLineLinearLayout extends LinearLayout {
         if (getChildAt(getChildCount() - 1) != null) {
             int top = getChildAt(getChildCount() - 1).getTop();
             //记录值
-            lastX = lineMarginSide - (mIcon.getWidth() >> 1);
+            lastX = (sideRelative>=rootMiddle?(sideRelative-lineMarginSide):(sideRelative+lineMarginSide)) - (mIcon
+                    .getWidth() >> 1);
             lastY = top + getChildAt(getChildCount() - 1).getPaddingTop() + lineDynamicDimen;
             //画一个图
             canvas.drawBitmap(mIcon, lastX, lastY, null);
@@ -157,23 +210,24 @@ public class UnderLineLinearLayout extends LinearLayout {
     private void drawBetweenLineVertical(Canvas canvas) {
         for (int i = 0; i < getChildCount() - 1; i++) {
             //画剩下的
-            canvas.drawLine(lineMarginSide, firstY, lineMarginSide, lastY, linePaint);
+            canvas.drawLine(firstX, firstY, firstX, lastY, linePaint);
             //画了线，就画圆
             if (getChildAt(i) != null && i != 0) {
                 int top = getChildAt(i).getTop();
                 //记录值
                 int Y = top + getChildAt(i).getPaddingTop() + lineDynamicDimen;
-                canvas.drawCircle(lineMarginSide, Y, pointSize, pointPaint);
+                canvas.drawCircle(firstX, Y, pointSize, pointPaint);
             }
         }
     }
+
     //=============================================================Horizontal Draw
     private void drawFirstChildViewHorizontal(Canvas canvas) {
         if (getChildAt(0) != null) {
             int left = getChildAt(0).getLeft();
             //记录值
-            firstX =left + getChildAt(0).getPaddingLeft() + lineDynamicDimen;
-            firstY = lineMarginSide;
+            firstX = left + getChildAt(0).getPaddingLeft() + lineDynamicDimen;
+            firstY = sideRelative>=rootMiddle?(sideRelative-lineMarginSide):(sideRelative+lineMarginSide);
             //画一个圆
             canvas.drawCircle(firstX, firstY, pointSize, pointPaint);
         }
@@ -184,7 +238,8 @@ public class UnderLineLinearLayout extends LinearLayout {
             int left = getChildAt(getChildCount() - 1).getLeft();
             //记录值
             lastX = left + getChildAt(getChildCount() - 1).getPaddingLeft() + lineDynamicDimen;
-            lastY = lineMarginSide - (mIcon.getWidth() >> 1);
+            lastY = (sideRelative>=rootMiddle?(sideRelative-lineMarginSide):(sideRelative+lineMarginSide)) - (mIcon
+                    .getWidth() >> 1);
             //画一个图
             canvas.drawBitmap(mIcon, lastX, lastY, null);
         }
@@ -193,13 +248,13 @@ public class UnderLineLinearLayout extends LinearLayout {
     private void drawBetweenLineHorizontal(Canvas canvas) {
         for (int i = 0; i < getChildCount() - 1; i++) {
             //画剩下的
-            canvas.drawLine(firstX, lineMarginSide, lastX, lineMarginSide, linePaint);
+            canvas.drawLine(firstX, firstY, lastX, firstY, linePaint);
             //画了线，就画圆
             if (getChildAt(i) != null && i != 0) {
                 int left = getChildAt(i).getLeft();
                 //记录值
                 int x = left + getChildAt(i).getPaddingLeft() + lineDynamicDimen;
-                canvas.drawCircle(x, lineMarginSide, pointSize, pointPaint);
+                canvas.drawCircle(x, firstY, pointSize, pointPaint);
             }
         }
     }
@@ -209,7 +264,8 @@ public class UnderLineLinearLayout extends LinearLayout {
     @Override
     public void setOrientation(int orientation) {
         super.setOrientation(orientation);
-        this.curOrientation=orientation;
+        this.curOrientation = orientation;
+        invalidate();
     }
 
     public int getLineStrokeWidth() {
@@ -218,6 +274,7 @@ public class UnderLineLinearLayout extends LinearLayout {
 
     public void setLineStrokeWidth(int lineStrokeWidth) {
         this.lineStrokeWidth = lineStrokeWidth;
+        invalidate();
     }
 
     public boolean isDrawLine() {
@@ -226,6 +283,7 @@ public class UnderLineLinearLayout extends LinearLayout {
 
     public void setDrawLine(boolean drawLine) {
         this.drawLine = drawLine;
+        invalidate();
     }
 
     public Paint getLinePaint() {
@@ -234,6 +292,7 @@ public class UnderLineLinearLayout extends LinearLayout {
 
     public void setLinePaint(Paint linePaint) {
         this.linePaint = linePaint;
+        invalidate();
     }
 
     public int getPointSize() {
@@ -242,6 +301,7 @@ public class UnderLineLinearLayout extends LinearLayout {
 
     public void setPointSize(int pointSize) {
         this.pointSize = pointSize;
+        invalidate();
     }
 
     public int getPointColor() {
@@ -250,6 +310,7 @@ public class UnderLineLinearLayout extends LinearLayout {
 
     public void setPointColor(int pointColor) {
         this.pointColor = pointColor;
+        invalidate();
     }
 
     public Paint getPointPaint() {
@@ -258,6 +319,7 @@ public class UnderLineLinearLayout extends LinearLayout {
 
     public void setPointPaint(Paint pointPaint) {
         this.pointPaint = pointPaint;
+        invalidate();
     }
 
     public int getLineColor() {
@@ -266,6 +328,7 @@ public class UnderLineLinearLayout extends LinearLayout {
 
     public void setLineColor(int lineColor) {
         this.lineColor = lineColor;
+        invalidate();
     }
 
     public int getLineMarginSide() {
@@ -274,6 +337,7 @@ public class UnderLineLinearLayout extends LinearLayout {
 
     public void setLineMarginSide(int lineMarginSide) {
         this.lineMarginSide = lineMarginSide;
+        invalidate();
     }
 
     public int getLineDynamicDimen() {
@@ -282,6 +346,7 @@ public class UnderLineLinearLayout extends LinearLayout {
 
     public void setLineDynamicDimen(int lineDynamicDimen) {
         this.lineDynamicDimen = lineDynamicDimen;
+        invalidate();
     }
 
     public Bitmap getIcon() {
@@ -292,9 +357,19 @@ public class UnderLineLinearLayout extends LinearLayout {
         mIcon = icon;
     }
 
-    public void setIcon(int resId){
-        if (resId==0)return;
+    public void setIcon(int resId) {
+        if (resId == 0) return;
         BitmapDrawable temp = (BitmapDrawable) mContext.getResources().getDrawable(resId);
         if (temp != null) mIcon = temp.getBitmap();
+        invalidate();
+    }
+
+    public int getLineGravity() {
+        return lineGravity;
+    }
+
+    public void setLineGravity(int lineGravity) {
+        this.lineGravity = lineGravity;
+        invalidate();
     }
 }

@@ -5,36 +5,73 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="razerdp.demo.MainActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:weightSum="3">
+        android:weightSum="4">
+
         <Button
             android:id="@+id/add"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="add"
-            />
+            android:text="add"/>
+
         <Button
             android:id="@+id/sub"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="sub"
-            />
+            android:text="sub"/>
+
         <Button
             android:id="@+id/horizontal"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="horizontal"
-            />
+            android:text="horizontal"/>
+
+        <Button
+            android:id="@+id/line_gravity"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="Left"/>
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/add_marginside"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="+"/>
+        <Button
+            android:id="@+id/sub_marginside"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="-"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/cur_marginside"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:text="current line marginside=25dp"/>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="none">
+
         <razerdp.widget.UnderLineLinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/underline_layout"
             android:layout_width="match_parent"

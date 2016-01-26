@@ -15,6 +15,15 @@
         <attr name="point_color" format="color"/>
         <!--图标-->
         <attr name="icon_src" format="reference"/>
+        <!--时间轴的gravity-->
+        <!--the gravity of the timeline-->
+        <attr name="line_gravity">
+            <enum name="Left" value="2"/>
+            <enum name="Right" value="4"/>
+            <enum name="Middle" value="0"/>
+            <enum name="Top" value="1"/>
+            <enum name="Bottom" value="3"/>
+        </attr>
     </declare-styleable>
 
 </resources>
