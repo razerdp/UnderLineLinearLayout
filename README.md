@@ -2,22 +2,17 @@
 // 这是一个简单的时间轴实现(LinearLayout)</br>
 
 
-----------
-
 
 ##效果图:</br>
 ![image](https://github.com/razerdp/UnderLineLinearLayout/blob/master/img/underlinelayout.gif)
 ![image](https://github.com/razerdp/UnderLineLinearLayout/blob/master/img/underlinelayout_horizontal.gif)
 </br>
 
-
 ----------
 
 
 #更新日志：
 
-
-----------
 
 
 ###2016-01-26:在忙完一天的工作后，忽然想起了这个东东，于是这次一并做了
@@ -30,10 +25,8 @@
  - 当方向为horizontal的时候，我们只能定义时间轴的位置在Top/Middle/Bottom，至于具体在什么位置，请设置**ine_margin_side**属性
  - 其余情况，比如vertical的方向，但我们设置了时间轴为top，这豪无意义对吧，那么其余非法情况我将其默认为0，也就是垂直方向默认为left，水平方向默认为top。
 
-效果图：
+###效果图：</br>
 ![image](https://github.com/razerdp/UnderLineLinearLayout/blob/master/img/underlinearlayout_with_gravity.gif)
-
-----
 
 ----------
 
