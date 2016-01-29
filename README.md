@@ -21,8 +21,8 @@
 
 **不过因为针对LinearLayout，所以有一定的限定：**
 
- - 当方向为vertical的时候，我们只能定义时间轴的位置在Left/Middle/Right，至于具体在什么位置，请设置**ine_margin_side**属性
- - 当方向为horizontal的时候，我们只能定义时间轴的位置在Top/Middle/Bottom，至于具体在什么位置，请设置**ine_margin_side**属性
+ - 当方向为vertical的时候，我们只能定义时间轴的位置在Left/Middle/Right，至于具体在什么位置，请设置**line_margin_side**属性
+ - 当方向为horizontal的时候，我们只能定义时间轴的位置在Top/Middle/Bottom，至于具体在什么位置，请设置**line_margin_side**属性
  - 其余情况，比如vertical的方向，但我们设置了时间轴为top，这豪无意义对吧，那么其余非法情况我将其默认为0，也就是垂直方向默认为left，水平方向默认为top。
 
 ###效果图：</br>
