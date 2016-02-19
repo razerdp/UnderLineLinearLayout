@@ -208,9 +208,9 @@ public class UnderLineLinearLayout extends LinearLayout {
     }
 
     private void drawBetweenLineVertical(Canvas canvas) {
+        //画剩下的
+        canvas.drawLine(firstX, firstY, firstX, lastY, linePaint);
         for (int i = 0; i < getChildCount() - 1; i++) {
-            //画剩下的
-            canvas.drawLine(firstX, firstY, firstX, lastY, linePaint);
             //画了线，就画圆
             if (getChildAt(i) != null && i != 0) {
                 int top = getChildAt(i).getTop();
@@ -246,9 +246,9 @@ public class UnderLineLinearLayout extends LinearLayout {
     }
 
     private void drawBetweenLineHorizontal(Canvas canvas) {
+        //画剩下的线
+        canvas.drawLine(firstX, firstY, lastX, firstY, linePaint);
         for (int i = 0; i < getChildCount() - 1; i++) {
-            //画剩下的
-            canvas.drawLine(firstX, firstY, lastX, firstY, linePaint);
             //画了线，就画圆
             if (getChildAt(i) != null && i != 0) {
                 int left = getChildAt(i).getLeft();
