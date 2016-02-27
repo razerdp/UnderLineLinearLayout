@@ -86,6 +86,7 @@ public class UnderLineLinearLayout extends LinearLayout {
 
         curOrientation = getOrientation();
         attr.recycle();
+        setWillNotDraw(false);
         initView(context);
     }
 
