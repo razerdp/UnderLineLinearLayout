@@ -5,7 +5,11 @@ import android.content.Context;
 /**
  * Created by 大灯泡 on 2016/1/26.
  */
-public class UIHelper {
+public final class UIHelper {
+
+    private UIHelper() throws InstantiationException {
+        throw new InstantiationException("This class is not for instantiation");
+    }
 
     /**
      * dip转px

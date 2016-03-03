@@ -19,9 +19,9 @@ public class HorizontalActivity extends AppCompatActivity implements OnClickList
     private Button subMarginButton;
     private TextView mCurMargin;
     private UnderLineLinearLayout mUnderLineLinearLayout;
-    private int[] LineGravity={UnderLineLinearLayout.GRAVITY_TOP,UnderLineLinearLayout.GRAVITY_MIDDLE,
+    private static final int[] LINE_GRAVITY={UnderLineLinearLayout.GRAVITY_TOP,UnderLineLinearLayout.GRAVITY_MIDDLE,
             UnderLineLinearLayout.GRAVITY_BOTTOM};
-    private String[] lineGravityStr={"TOP","MIDDLE","BOTTOM"};
+    private static final String[] LINE_GRAVITY_STR={"TOP","MIDDLE","BOTTOM"};
     int t=1;
 
     @Override
@@ -78,8 +78,8 @@ public class HorizontalActivity extends AppCompatActivity implements OnClickList
                 finish();
                 break;
             case R.id.line_gravity:
-                mUnderLineLinearLayout.setLineGravity(LineGravity[t%3]);
-                lineGravityBtn.setText(lineGravityStr[t%3]);
+                mUnderLineLinearLayout.setLineGravity(LINE_GRAVITY[t%3]);
+                lineGravityBtn.setText(LINE_GRAVITY_STR[t%3]);
                 t++;
                 break;
             case R.id.add_marginside:
