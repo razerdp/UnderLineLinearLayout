@@ -19,9 +19,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
     private Button subMarginButton;
     private TextView mCurMargin;
     private UnderLineLinearLayout mUnderLineLinearLayout;
-    private int[] LineGravity={UnderLineLinearLayout.GRAVITY_LEFT,UnderLineLinearLayout.GRAVITY_MIDDLE,
+    private static final int[] LINE_GRAVITY={UnderLineLinearLayout.GRAVITY_LEFT,UnderLineLinearLayout.GRAVITY_MIDDLE,
             UnderLineLinearLayout.GRAVITY_RIGHT};
-    private String[] lineGravityStr={"LEFT","MIDDLE","RIGHT"};
+    private static final String[] LINE_GRAVITY_STR={"LEFT","MIDDLE","RIGHT"};
     int t=1;
 
     @Override
@@ -79,8 +79,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener{
                 finish();
                 break;
             case R.id.line_gravity:
-                mUnderLineLinearLayout.setLineGravity(LineGravity[t%3]);
-                lineGravityBtn.setText(lineGravityStr[t%3]);
+                mUnderLineLinearLayout.setLineGravity(LINE_GRAVITY[t%3]);
+                lineGravityBtn.setText(LINE_GRAVITY_STR[t%3]);
                 t++;
                 break;
             case R.id.add_marginside:
